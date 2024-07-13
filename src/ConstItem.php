@@ -4,10 +4,13 @@ namespace Inilim\GenClass;
 
 final readonly class ConstItem
 {
+    public string $value_export;
+
     function __construct(
         public string $name,
-        public string $value_export,
+        $value,
         public string $visibility = 'public',
     ) {
+        $this->value_export = \var_export($value, true);
     }
 }

@@ -77,12 +77,10 @@ foreach ($tables as $table) {
         );
     });
 
-    // de(\var_export($table->name, true));
-
     $const = [
         // new ConstItem(
         //     name: 'TABLE_NAME',
-        //     value_export: \var_export($table->name, true),
+        //     value: $table->name,
         // ),
     ];
 
