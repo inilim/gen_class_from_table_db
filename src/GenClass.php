@@ -21,6 +21,14 @@ class GenClass
         string $dir,
         TwigWrap $twig,
         string $namespace,
+        /**
+         * если имя класса хочется указать самому
+         */
+        ?string $my_class_name = null,
+        /**
+         * если имя файла хочется указать самому
+         */
+        ?string $my_file_name  = null,
         array $const = [],
         string $prefix_class_name = '',
         string $postfix_class_name = '',
@@ -31,12 +39,18 @@ class GenClass
     ) {
         // de(123123);
 
+        if ($my_class_name !== null) {
+            $class_name = $prefix_class_name . $my_class_name . $postfix_class_name;
+        } else {
+            $class_name = $prefix_class_name . \_str()->ucfirst(\_str()->camel($table->name)) . $postfix_class_name;
+        }
+
+
         $vars = [
-            'table'     => [
-                'name'          => $prefix_class_name . \_str()->ucfirst(\_str()->camel($table->name)) . $postfix_class_name,
-                'original_name' => $table->name,
-            ],
-            'const' => $const,
+            'class_name' => $class_name,
+            'table'      => $table,
+            'const'      => $const,
+
             'extends'   => [
                 'exists'     => $extends !== null,
                 'class_name' => \basename($extends ?? ''),
@@ -53,9 +67,10 @@ class GenClass
 
         // de($vars);
 
-        $str_class = $twig->render('class', $vars);
+        $class_code = $twig->render('class', $vars);
+        $name_file  = $my_file_name ?? $class_name;
 
-        \file_put_contents(\sprintf('%s/%s.php', $dir, $vars['table']['name']), $str_class);
+        \file_put_contents(\sprintf('%s/%s.php', $dir, $name_file), $class_code);
 
         // de();
     }

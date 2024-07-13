@@ -55,7 +55,7 @@ foreach ($tables as $table) {
 
     $info = \_arr()->map($info, function ($col) {
         $col['is_nullable'] = $col['is_nullable'] === 'YES' ? true : false;
-        $col['data_type'] = match ($col['data_type']) {
+        $col['data_type']   = match ($col['data_type']) {
             // string
             'json',
             'timestamp', 'date', 'datetime', 'time',
@@ -78,10 +78,10 @@ foreach ($tables as $table) {
     // de(\var_export($table->name, true));
 
     $const = [
-        new ConstItem(
-            name: 'TABLE_NAME',
-            value_export: \var_export($table->name, true),
-        ),
+        // new ConstItem(
+        //     name: 'TABLE_NAME',
+        //     value_export: \var_export($table->name, true),
+        // ),
     ];
 
     $gen_class->__invoke(

@@ -7,9 +7,9 @@ use {{ extends.use }};
 {% endif %}
 
 /**
-* "{{ table.original_name }}"
+* "{{ table.name }}"
 */
-{{ final ? 'final ' : '' }}{{ readonly ? 'readonly ' : '' }}class {{ table.name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
+{{ final ? 'final ' : '' }}{{ readonly ? 'readonly ' : '' }}class {{ class_name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
 {
 {% for item in const %}
     {{ item.visibility }} const {{ item.name }} = {{ item.value_export|raw }};
