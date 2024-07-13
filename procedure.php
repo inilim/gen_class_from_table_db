@@ -7,6 +7,7 @@ use Inilim\GenClass\ColumnItem;
 use Inilim\GenClass\ConstItem;
 use Inilim\GenClass\TableItem;
 use Inilim\GenClass\GenClass;
+use Inilim\GenClass\GenClassAllowDynamicProps;
 use Inilim\IPDO\IPDOMySQL;
 use Inilim\GenClass\InitTwig;
 
@@ -15,6 +16,7 @@ Dump::init();
 \define('BASE_NAME', 'noks_local');
 $db        = new IPDOMySQL(BASE_NAME, 'root', '', \_int(), \_arr(), 'MySQL-8.0');
 $gen_class = new GenClass;
+$gen_class_adp = new GenClassAllowDynamicProps;
 \define('DIR_CLASS', __DIR__ . '/class');
 \define('_NAMESPACE', 'Noks\Model\Item');
 $twig = (new InitTwig)->get();
@@ -84,7 +86,19 @@ foreach ($tables as $table) {
         // ),
     ];
 
-    $gen_class->__invoke(
+    // $gen_class->__invoke(
+    //     $table,
+    //     $info,
+    //     DIR_CLASS,
+    //     $twig,
+    //     _NAMESPACE,
+    //     prefix_class_name: 'GenClass_',
+    //     const: $const,
+    //     props_outside_construct: true,
+    //     extends: GenClass::class,
+    // );
+
+    $gen_class_adp->__invoke(
         $table,
         $info,
         DIR_CLASS,

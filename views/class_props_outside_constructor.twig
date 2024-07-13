@@ -15,10 +15,17 @@ use {{ extends.use }};
     {{ item.visibility }} const {{ item.name }} = {{ item.value_export|raw }};
 {% endfor %}
 
+{% for item in cols %}
+    {{ item.visibility }} {{ item.is_null ? '?' : '' }}{{ item.type }} ${{ item.name }};
+{% endfor %}
+
     function __construct(
     {% for item in cols %}
-    {{ item.visibility }} {{ item.is_null ? '?' : '' }}{{ item.type }} ${{ item.name }}{% if loop.last == false %},{% endif %} 
+    {{ item.is_null ? '?' : '' }}{{ item.type }} ${{ item.name }}{% if loop.last == false %},{% endif %} 
     {% endfor %}
     ) {
+        {% for item in cols %}
+        $this->{{ item.name }} = ${{ item.name }};
+        {% endfor %}
     }
 }

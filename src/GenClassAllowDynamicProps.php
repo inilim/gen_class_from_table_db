@@ -9,7 +9,7 @@ use Inilim\GenClass\ConstItem;
 
 /**
  */
-class GenClass
+class GenClassAllowDynamicProps
 {
     /**
      * @param TableItem $table
@@ -35,10 +35,8 @@ class GenClass
         string $prefix_class_name = '',
         string $postfix_class_name = '',
         ?string $extends = null,
-        bool $readonly   = false,
         bool $final      = false,
         bool $abstract   = false,
-        bool $props_outside_construct = false,
     ) {
         // de(123123);
 
@@ -62,18 +60,18 @@ class GenClass
             // 'prefix_class_name'  => $prefix_class_name,
             // 'postfix_class_name' => $postfix_class_name,
             'cols'      => $cols,
-            'readonly'  => $readonly,
             'final'     => $final,
             'abstract'  => $abstract,
             'namespace' => $namespace,
         ];
 
-        $tpl = $props_outside_construct ? 'class_props_outside_constructor' : 'class';
+        // de($vars);
 
-        $class_code = $twig->render($tpl, $vars);
-
+        $class_code = $twig->render('class_allow_dynamic_properties', $vars);
         $name_file  = $my_file_name ?? $class_name;
 
         \file_put_contents(\sprintf('%s/%s.php', $dir, $name_file), $class_code);
+
+        // de();
     }
 }
