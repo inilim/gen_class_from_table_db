@@ -1,6 +1,6 @@
 <?php
 
-namespace GenClass;
+namespace Inilim\GenClass;
 
 use Twig\Environment;
 

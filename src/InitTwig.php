@@ -1,8 +1,8 @@
 <?php
 
-namespace GenClass;
+namespace Inilim\GenClass;
 
-use GenClass\TwigWrap;
+use Inilim\GenClass\TwigWrap;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
@@ -13,9 +13,9 @@ class InitTwig
     function __construct()
     {
         $this->obj = new TwigWrap(
-            new FilesystemLoader(ROOT_DIR . '/views'),
+            new FilesystemLoader(\dirname(__DIR__) . '/views'),
             [
-                'cache'            => ROOT_DIR . '/cache/view',
+                'cache'            => \dirname(__DIR__) . '/cache/views',
                 'debug'            => true,
                 'auto_reload'      => true, // Если true, при каждом рендеринге шаблона Symfony сначала проверяет, изменился ли его исходный код с момента его компиляции. Если он изменился, шаблон автоматически компилируется заново.
                 'strict_variables' => true, // Если установлено значение false, Twig будет молча игнорировать недопустимые переменные (переменные и/или атрибуты/методы, которые не существуют) и заменять их нулевым значением. Если установлено значение true, Twig вместо этого генерирует исключение (по умолчанию — false).
