@@ -1,0 +1,31 @@
+{
+    "name": "inilim/gen_class_from_table_db",
+    "description": "gen_class_from_table_db",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Inilim\\GenClass\\": "src/"
+        },
+        "files": [
+            "bootstrap.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "inilim"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.2",
+        "inilim/ipdo": "dev-main",
+        "inilim/dump": "dev-main",
+        "twig/twig": "^3.0",
+        "inilim/string": "dev-main"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "@stable"
+    }
+}
