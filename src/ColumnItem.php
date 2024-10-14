@@ -2,13 +2,22 @@
 
 namespace Inilim\GenClass;
 
-final readonly class ColumnItem
+final  class ColumnItem
 {
+    protected string $name;
+    protected bool $is_null;
+    protected string $type;
+    protected string $visibility = 'public';
+
     function __construct(
-        public string $name,
-        public bool $is_null,
-        public string $type,
-        public string $visibility = 'public',
+        string $name,
+        bool $is_null,
+        string $type,
+        string $visibility = 'public'
     ) {
+        $this->name = $name;
+        $this->is_null = $is_null;
+        $this->type = $type;
+        $this->visibility = $visibility;
     }
 }
