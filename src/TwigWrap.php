@@ -9,9 +9,10 @@ class TwigWrap extends Environment
 {
     protected String_ $str;
 
-    function __construct(String_ $str)
+    function setStr(String_ $str): self
     {
         $this->str = $str;
+        return $this;
     }
 
     /**
