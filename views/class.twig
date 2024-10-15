@@ -12,7 +12,7 @@ use {{ extends.use }};
 {{ final ? 'final ' : '' }}{{ readonly ? 'readonly ' : '' }}class {{ class_name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
 {
 {% for item in const %}
-    {{ item.getVisibility() }} const {{ item.getName() }} = {{ item.getValueExport(|raw }};
+    {{ item.getVisibility() }} const {{ item.getName() }} = {{ item.getValueExport()|raw }};
 {% endfor %}
 
     function __construct(
