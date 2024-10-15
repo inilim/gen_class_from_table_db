@@ -7,15 +7,15 @@ use {{ extends.use }};
 {% endif %}
 
 /**
- * "{{ table.name }}"
+ * "{{ table.getName() }}"
 {% for item in cols %}
- * @property {{ item.is_null ? '?' : '' }}{{ item.type }} ${{ item.name }}
+ * @property {{ item.isNull() ? '?' : '' }}{{ item.getType() }} ${{ item.getName() }}
 {% endfor %}
  */
 #[\AllowDynamicProperties]
 {{ final ? 'final ' : '' }}class {{ class_name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
 {
 {% for item in const %}
-    {{ item.visibility }} const {{ item.name }} = {{ item.value_export|raw }};
+    {{ item.getVisibility() }} const {{ item.getName() }} = {{ item.getValueExport()|raw }};
 {% endfor %}
 }

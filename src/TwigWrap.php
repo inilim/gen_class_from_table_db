@@ -3,9 +3,17 @@
 namespace Inilim\GenClass;
 
 use Twig\Environment;
+use Inilim\GenClass\String_;
 
 class TwigWrap extends Environment
 {
+    protected String_ $str;
+
+    function __construct(String_ $str)
+    {
+        $this->str = $str;
+    }
+
     /**
      * Renders a template.
      *
@@ -57,7 +65,7 @@ class TwigWrap extends Environment
     protected function prepareNameTpl(string $name): string
     {
         $name = \str_replace('.', '/', $name);
-        if (!\str_ends_with(\_str()->lower($name), '.twig')) $name .= '.twig';
+        if (!$this->str->endsWith($this->str->lower($name), '.twig')) $name .= '.twig';
         return $name;
     }
 }

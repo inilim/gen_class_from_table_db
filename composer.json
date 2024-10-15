@@ -20,8 +20,7 @@
         "php": "^7.4 | ^8.2",
         "inilim/ipdo": "dev-main",
         "inilim/dump": "dev-main",
-        "twig/twig": "^3.0",
-        "inilim/string": "dev-main"
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "phpstan/phpstan": "@stable"

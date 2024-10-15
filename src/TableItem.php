@@ -2,10 +2,18 @@
 
 namespace Inilim\GenClass;
 
-final readonly class TableItem
+final class TableItem
 {
+    protected string $name;
+
     function __construct(
-        public string $name,
+        string $name
     ) {
+        $this->name = $name;
+    }
+
+    function getName(): string
+    {
+        return $this->name;
     }
 }

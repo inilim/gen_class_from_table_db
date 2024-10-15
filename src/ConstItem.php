@@ -1,16 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inilim\GenClass;
 
-final readonly class ConstItem
+final class ConstItem
 {
-    public string $value_export;
+    protected string $name;
+    protected string $valueExport;
+    protected string $visibility;
 
     function __construct(
-        public string $name,
+        string $name,
         $value,
-        public string $visibility = 'public',
+        string $visibility = 'public'
     ) {
-        $this->value_export = \var_export($value, true);
+        $this->name        = $name;
+        $this->valueExport = \var_export($value, true);
+        $this->visibility  = $visibility;
+    }
+
+    function getVisibility(): string
+    {
+        return $this->visibility;
+    }
+
+    function getName(): string
+    {
+        return $this->name;
+    }
+
+    function getValueExport(): string
+    {
+        return $this->valueExport;
     }
 }

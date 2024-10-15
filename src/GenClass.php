@@ -1,16 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inilim\GenClass;
 
 use Inilim\GenClass\TableItem;
 use Inilim\GenClass\ColumnItem;
 use Inilim\GenClass\TwigWrap;
 use Inilim\GenClass\ConstItem;
+use Inilim\GenClass\String_;
 
 /**
  */
-class GenClass
+final class GenClass
 {
+    protected String_ $str;
+
+    function __construct(String_ $str)
+    {
+        $this->str = $str;
+    }
+
     /**
      * @param TableItem $table
      * @param ColumnItem[] $cols
@@ -38,14 +48,14 @@ class GenClass
         bool $readonly   = false,
         bool $final      = false,
         bool $abstract   = false,
-        bool $props_outside_construct = false,
+        bool $props_outside_construct = false
     ) {
         // de(123123);
 
         if ($my_class_name !== null) {
             $class_name = $prefix_class_name . $my_class_name . $postfix_class_name;
         } else {
-            $class_name = $prefix_class_name . \_str()->ucfirst(\_str()->camel($table->name)) . $postfix_class_name;
+            $class_name = $prefix_class_name . $this->str->ucfirst($this->str->camel($table->getName())) . $postfix_class_name;
         }
 
 

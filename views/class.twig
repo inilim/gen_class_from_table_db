@@ -7,17 +7,17 @@ use {{ extends.use }};
 {% endif %}
 
 /**
- * "{{ table.name }}"
+ * "{{ table.getName() }}"
  */
 {{ final ? 'final ' : '' }}{{ readonly ? 'readonly ' : '' }}class {{ class_name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
 {
 {% for item in const %}
-    {{ item.visibility }} const {{ item.name }} = {{ item.value_export|raw }};
+    {{ item.getVisibility() }} const {{ item.getName() }} = {{ item.getValueExport(|raw }};
 {% endfor %}
 
     function __construct(
     {% for item in cols %}
-    {{ item.visibility }} {{ item.is_null ? '?' : '' }}{{ item.type }} ${{ item.name }}{% if loop.last == false %},{% endif %} 
+    {{ item.getVisibility() }} {{ item.isNull() ? '?' : '' }}{{ item.getType() }} ${{ item.getName() }}{% if loop.last == false %},{% endif %} 
     {% endfor %}
     ) {
     }
