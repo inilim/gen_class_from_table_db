@@ -15,6 +15,7 @@ use Inilim\GenClass\String_;
 class GenClassAllowDynamicProps
 {
     protected String_ $str;
+    protected bool $addAttr = true;
 
     function __construct(String_ $str)
     {
@@ -73,6 +74,7 @@ class GenClassAllowDynamicProps
             'final'     => $final,
             'abstract'  => $abstract,
             'namespace' => $namespace,
+            'add_attr'  => $this->addAttr,
         ];
 
         // de($vars);
@@ -83,5 +85,11 @@ class GenClassAllowDynamicProps
         \file_put_contents(\sprintf('%s/%s.php', $dir, $name_file), $class_code);
 
         // de();
+    }
+
+    function setAddAttr(bool $value): self
+    {
+        $this->addAttr = $value;
+        return $this;
     }
 }

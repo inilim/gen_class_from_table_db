@@ -12,7 +12,7 @@ use {{ extends.use }};
  * @property {{ item.isNull() ? '?' : '' }}{{ item.getType() }} ${{ item.getName() }}
 {% endfor %}
  */
-#[\AllowDynamicProperties]
+{{ add_attr ? '#[\AllowDynamicProperties]' : '' }}
 {{ final ? 'final ' : '' }}class {{ class_name }}{{ extends.exists ? ' extends ' ~ extends.class_name : '' }}
 {
 {% for item in const %}
