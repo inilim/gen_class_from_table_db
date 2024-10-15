@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inilim\GenClass;
 
+use Twig\TwigFunction;
+use Inilim\GenClass\String_;
 use Inilim\GenClass\TwigWrap;
 use Twig\Loader\FilesystemLoader;
-use Twig\TwigFunction;
 
 class InitTwig
 {
@@ -21,6 +24,7 @@ class InitTwig
                 'strict_variables' => true, // Если установлено значение false, Twig будет молча игнорировать недопустимые переменные (переменные и/или атрибуты/методы, которые не существуют) и заменять их нулевым значением. Если установлено значение true, Twig вместо этого генерирует исключение (по умолчанию — false).
             ]
         );
+        $this->obj->setStr(new String_);
 
         $this->addFunctions();
     }
